@@ -36,9 +36,7 @@ pipeline {
         }
 
         stage('Sonar Analysis') {
-            environment {
-                scannerHome = tool 'sonar'
-            }
+            
             steps {
                withSonarQubeEnv('sonar') {
                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
