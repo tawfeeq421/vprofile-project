@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
 	    maven "MAVEN3"
-	    
+	    jdk "OracleJDK8"
 	}
     stages{
         stage('Fetch code') {
@@ -36,10 +36,12 @@ pipeline {
         }
 
         stage('Sonar Analysis') {
-            
+            environment {
+                scannerHome = tool 'sonar4.7'
+            }
             steps {
                withSonarQubeEnv('sonar') {
-                   sh '''${scannerHome}/bin/sonar -Dsonar.projectKey=vprofile \
+                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
