@@ -8,7 +8,7 @@ pipeline {
     environment {
         registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "730335587328.dkr.ecr.us-east-1.amazonaws.com/tawfeeq421"
-        vprofileRegistry = "https://730335587328.dkr.ecr.us-east-1.amazonaws.com""
+        vprofileRegistry = "https://730335587328.dkr.ecr.us-east-1.amazonaws.com"
         cluster = "ahmed421"
         service = "tak-service "
     }
