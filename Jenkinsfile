@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('Fetch code'){
       steps {
-        git branch: 'docker', url: 'https://github.com/devopshydclub/vprofile-project.git'
+        git branch: 'docker', url: 'https://github.com/tawfeeq421/vprofile-project.git'
       }
     }
 
@@ -37,7 +37,7 @@ pipeline {
 
         stage('build && SonarQube analysis') {
             environment {
-             scannerHome = tool 'sonar4.7'
+             scannerHome = tool 'sonar'
           }
             steps {
                 withSonarQubeEnv('sonar') {
