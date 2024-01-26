@@ -8,7 +8,9 @@ pipeline {
     environment {
         registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "730335587328.dkr.ecr.us-east-1.amazonaws.com/tawfeeq421"
-        vprofileRegistry = "https://730335587328.dkr.ecr.us-east-1.amazonaws.com"
+        vprofileRegistry = "https://730335587328.dkr.ecr.us-east-1.amazonaws.com""
+        cluster = "ahmed421"
+        service = "tak-service "
     }
   stages {
     stage('Fetch code'){
@@ -83,6 +85,14 @@ pipeline {
               }
             }
           }
+     }
+     
+     stage('Deploy to ecs') {
+          steps {
+        withAWS(credentials: 'awscreds', region: 'us-east-1') {
+          sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
+        }
+      }
      }
 
   }
